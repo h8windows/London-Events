@@ -9,3 +9,5 @@ Feature: Creating categories
 		And I fill in "Category name" with "Olympics"
 		And I press "Create Category"
 		Then I should see "Category has been created."
+		And I should be on the category page for "Olympics"
+		And I should see "Category - Olympics - London Events"
