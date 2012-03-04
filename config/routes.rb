@@ -1,6 +1,9 @@
 Londonevents::Application.routes.draw do
   root :to => "categories#index"
-  resources :categories
+  resources :categories do
+    resources :events
+  end
+  
   devise_for :users
 
   # The priority is based upon order of creation:
