@@ -36,6 +36,12 @@ class EventsController < ApplicationController
     end
   end
   
+  def destroy
+    @event.destroy
+    flash[:notice] = "Event has been deleted."
+    redirect_to @category
+  end
+  
   private
     def find_category
       @category = Category.find(params[:category_id])
