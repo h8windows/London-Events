@@ -22,6 +22,20 @@ class EventsController < ApplicationController
     #taken care of by find_event
   end
   
+  def edit
+    
+  end
+  
+  def update
+    if @event.update_attributes(params[:event])
+      flash[:notice] = "Event has been updated."
+      redirect_to [@category, @event]
+    else
+      flash[:alert] = "Event has not been updated."
+      render :action => "edit"
+    end
+  end
+  
   private
     def find_category
       @category = Category.find(params[:category_id])
