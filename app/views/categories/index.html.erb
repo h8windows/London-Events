@@ -4,5 +4,7 @@
 	<li><%= link_to category.name, category %></li>
 	<% end %>
 </ul>
-<%= link_to "New Category", new_category_path %>
+<%= admins_only do %>
+	<%= link_to "New Category", new_category_path %>
+<% end %>
 <%= link_to "Sign in", new_user_session_path %>
