@@ -6,8 +6,8 @@ Feature: Creating events
 	Background:
 		Given there is a category called "Olympics"
 		And there are the following users:
-		| email              | password |
-		| user@example.com   | password |
+		| email              | password | admin |
+		| user@example.com   | password | true  |
 		And I am on the homepage
 		When I follow "Olympics"
 		And I follow "New Event"

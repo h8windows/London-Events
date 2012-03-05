@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:index, :show, :edit, :update, :destroy]
   before_filter :find_category
   before_filter :find_event, :only => [:show, :edit, :update, :destroy]
   
