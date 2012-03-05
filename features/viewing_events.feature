@@ -4,12 +4,15 @@ Feature: Viewing events
 	I want to see them on that category's page
 	
 	Background:
+		Given there are the following users:
+		| email             | password |
+		| user@example.com  | password |
 		Given there is a category called "Olympics"
-		And that category has an event:
+		And "user@example.com" has created an event for this category:
 		| title            | description               |
 		| Gymnastics       | Rings and other things    |
 		And there is a category called "Arts Festivals"
-		And that category has an event:
+		And "user@example.com" has created an event for this category:
 		| title            | description               |
 		| Dance Fest       | dancing in the streets    |
 		And I am on the homepage

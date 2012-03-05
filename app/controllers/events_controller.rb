@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :find_category
   before_filter :find_event, :only => [:show, :edit, :update, :destroy]
   
@@ -8,7 +9,7 @@ class EventsController < ApplicationController
   end
   
   def create
-    @event = @category.events.build(params[:event])
+    @event = @category.events.build(params[:event].merge!(:user => current_user))
     if @event.save
       flash[:notice] = "Event has been created."
       redirect_to [@category, @event]

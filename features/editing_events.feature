@@ -4,8 +4,12 @@ Feature: Editing events
 	I want a form to edit the events
 	
 	Background:
+		Given there are the following users:
+		| email            | password |
+		| user@example.com | password |
+		And I am signed in as them
 		Given there is a category called "Olympics"
-		And that category has an event:
+		And "user@example.com" has created an event for this category:
 		| title               | description              |
 		| Gymnastics          | Rings and lots of things |
 		Given I am on the homepage

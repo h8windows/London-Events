@@ -1,5 +1,6 @@
 <div id='event'>
 	<h2><%= @event.title %></h2>
+	<small>Author: <%= @event.user.email %></small>
 	<%= simple_format(@event.description) %>
 </div>
 <%= link_to "Edit Event", [:edit, @category, @event] %>

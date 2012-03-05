@@ -4,8 +4,12 @@ Feature: Deleting tickets
 	I want to press a button and make them disappear
 	
 	Background:
+		Given there are the following users:
+		| email              | password |
+		| user@example.com   | password | 
+		And I am signed in as them
 		Given there is a category called "Olympics"
-		And that category has an event:
+		And "user@example.com" has created an event for this category:
 		| title                 | description              |
 		| Gymnastics            | Rings and other things   |
 		Given I am on the homepage
