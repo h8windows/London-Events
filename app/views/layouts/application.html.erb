@@ -13,6 +13,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<nav>
+		<%= admins_only do %>
+		<%= link_to "Admin", admin_root_path %>
+		<% end %>
+	</nav>
 <% flash.each do |key, value| %>
 	<div class='flash' id='<%= key %>'>
 		<%= value %>
