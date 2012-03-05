@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   
+  before_filter :authorize_admin!, :except => [:index, :show]
   before_filter :find_category, :only => [:show, :edit, :update, :destroy]
   
   def index

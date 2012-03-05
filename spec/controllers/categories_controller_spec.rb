@@ -1,15 +1,19 @@
 require 'spec_helper'
 
 describe CategoriesController do
-  let(:user) do
-    user = Factory(:user)
-    #user.confirm!
-    user
-  end
+  let(:user) { create_user! }
   
   let(:category) { Factory(:category) }
   
   context "standard users" do
+    
+    it "cannot access the show action" do
+      sign_in(:user, user)
+      get :show, :id => category.id
+      response.should redirect_to(categories_path)
+      flash[:alert].should eql("The category you were looking for could not be found.")
+    end
+
     { "new" => "get",
       "create" => "post",
       "edit" => "get",

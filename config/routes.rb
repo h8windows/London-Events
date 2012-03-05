@@ -1,7 +1,12 @@
 Londonevents::Application.routes.draw do
+
   root :to => "categories#index"
   resources :categories do
     resources :events
+  end
+  
+  namespace :admin do
+    resources :users
   end
   
   devise_for :users
