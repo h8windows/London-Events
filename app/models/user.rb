@@ -14,5 +14,5 @@ class User < ActiveRecord::Base
   def to_s
     "#{name} (#{admin? ? "Admin" : "User"})"
   end
-  
+
 end
