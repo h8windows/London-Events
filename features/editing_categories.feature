@@ -4,6 +4,10 @@ Feature: Editing categories
 	I want to be able to do that through an interface
 	
 	Background:
+		Given there are the following users:
+		| email             | password | admin |
+		| admin@example.com | password | true  |
+		And I am signed in as them
 		Given there is a category called "Olympics"
 		And I am on the homepage
 		When I follow "Olympics"

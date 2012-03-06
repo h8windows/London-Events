@@ -3,6 +3,12 @@ Feature: Deleting categories
 	As a user
 	I want to make them go away
 	
+	Background:
+		Given there are the following users:
+		| email             | password | admin |
+		|admin@example.com  | password | true  |
+		And I am signed in as them
+	
 	Scenario: Deleting a category
 		Given there is a category called "Olympics"
 		And I am on the homepage

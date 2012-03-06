@@ -6,8 +6,8 @@ Feature: Creating events
 	Background:
 		Given there is a category called "Olympics"
 		And there are the following users:
-		| email              | password | admin |
-		| user@example.com   | password | true  |
+		| email              | password | admin | name      |
+		| user@example.com   | password | true  | Billybob  |
 		And I am on the homepage
 		When I follow "Olympics"
 		And I follow "New Event"
@@ -22,7 +22,7 @@ Feature: Creating events
 			And I fill in "Description" with "Rings and lots of other things."
 			And I press "Create Event"
 			Then I should see "Event has been created."
-			Then I should see "Author: user@example.com"
+			Then I should see "Author: Billybob"
 			
 		Scenario: Creating an event with invalid attributes fails
 			When I press "Create Event"

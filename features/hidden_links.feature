@@ -36,3 +36,18 @@ Feature: Hidden links
 			Given I am signed in as "admin@example.com"
 			When I follow "Olympics"
 			Then I should see the "Edit Category" link
+			
+		Scenario: Delete category link is hidden from non-signed-in users
+			Given I am on the homepage
+			When I follow "Olympics"
+			Then I should not see the "Delete Category" link
+			
+		Scenario: Delete category link is hidden from signed-in users
+			Given I am signed in as "user@example.com"
+			When I follow "Olympics"
+			Then I should not see the "Delete Category" link
+			
+		Scenario: Delete category link is shown to admins
+			Given I am signed in as "admin@example.com"
+			When I follow "Olympics"
+			Then I should see the "Delete Category" link

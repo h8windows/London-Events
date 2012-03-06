@@ -5,8 +5,8 @@ Feature: Editing a user
 	
 	Background:
 		Given there are the following users:
-		| email             | password | admin | name      |
-		| admin@example.com | password | true  | Billybob  |
+		| email             | password | admin | name       |
+		| admin@example.com | password | true  | Superuser  |
 		And I am signed in as them
 		
 		Given there are the following users:
