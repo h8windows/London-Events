@@ -7,11 +7,14 @@ Feature: Viewing events
 		Given there are the following users:
 		| email             | password |
 		| user@example.com  | password |
-		Given there is a category called "Olympics"
+		And there is a category called "Olympics"
+		And "user@example.com" can view the "Olympics" category
+		And I am signed in as them
 		And "user@example.com" has created an event for this category:
 		| title            | description               |
 		| Gymnastics       | Rings and other things    |
 		And there is a category called "Arts Festivals"
+		And "user@example.com" can view the "Arts Festivals" category
 		And "user@example.com" has created an event for this category:
 		| title            | description               |
 		| Dance Fest       | dancing in the streets    |

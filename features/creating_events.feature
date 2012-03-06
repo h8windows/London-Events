@@ -8,14 +8,11 @@ Feature: Creating events
 		And there are the following users:
 		| email              | password | admin | name      |
 		| user@example.com   | password | true  | Billybob  |
+		And "user@example.com" can view the "Olympics" category
+		And I am signed in as them
 		And I am on the homepage
 		When I follow "Olympics"
 		And I follow "New Event"
-		Then I should see "You need to sign in before continuing."
-		When I fill in "Email" with "user@example.com"
-		And I fill in "Password" with "password"
-		And I press "Sign in"
-		Then I should see "New Event"
 		
 		Scenario: Creating an event
 			When I fill in "Title" with "Gymnastics"

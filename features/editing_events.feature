@@ -9,6 +9,7 @@ Feature: Editing events
 		| user@example.com | password |
 		And I am signed in as them
 		Given there is a category called "Olympics"
+		And "user@example.com" can view the "Olympics" category
 		And "user@example.com" has created an event for this category:
 		| title               | description              |
 		| Gymnastics          | Rings and lots of things |
