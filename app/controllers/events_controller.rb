@@ -1,8 +1,10 @@
 class EventsController < ApplicationController
   
-  before_filter :authenticate_user!, :except => [:index, :show, :edit, :update, :destroy]
+  before_filter :authenticate_user!
   before_filter :find_category
   before_filter :find_event, :only => [:show, :edit, :update, :destroy]
+  #before_filter :authorize_create!, :only => [:new, :create]
+  #before_filter :authorize_update!, :only => [:edit, :update]
   
   def new
     @event = @category.events.build
@@ -45,11 +47,27 @@ class EventsController < ApplicationController
   
   private
     def find_category
-      @category = Category.find(params[:category_id])
+      @category = Category.for(current_user).find(params[:category_id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "The category you were looking for could not be found."
+      redirect_to root_path
     end
     
     def find_event
       @event = @category.events.find(params[:id])
     end
-  
+    
+    def authorize_create!
+      if !current_user.admin? && cannot?("create events".to_sym, @category)
+        flash[:alert] = "You cannot create events on this category."
+        redirect_to @category
+      end
+    end
+    
+    def authorize_update!
+      if !current_user.admin? && cannot?(:"edit events", @category)
+        flash[:alert] = "You cannot modify events on this category."
+        redirect_to @category
+      end
+    end
 end

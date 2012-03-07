@@ -1,11 +1,11 @@
 class CategoriesController < ApplicationController
   
   before_filter :authorize_admin!, :except => [:index, :show]
-  before_filter :authenticate_user!, :only => [:show]
+  before_filter :authenticate_user!, :only => [:index, :show]
   before_filter :find_category, :only => [:show, :edit, :update, :destroy]
   
   def index
-    @categories = Category.all
+    @categories = Category.for(current_user).all
   end
   
   def new
@@ -51,13 +51,9 @@ class CategoriesController < ApplicationController
   
   private
     def find_category
-      @category = if current_user.admin?
-        Category.find(params[:id])
-        else
-          Category.readable_by(current_user).find(params[:id])
-        end
+      @category = Category.for(current_user).find(params[:id])
       rescue ActiveRecord::RecordNotFound
-      flash[:alert] = "The category you were looking" + " for could not be found."
+      flash[:alert] = "The category you were looking for could not be found."
       redirect_to categories_path
     end
   

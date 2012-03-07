@@ -14,9 +14,7 @@
 </head>
 <body>
 	<nav>
-		<%= admins_only do %>
-		<%= link_to "Admin", admin_root_path %>
-		<% end %>
+		<%= render 'layouts/header' %>
 	</nav>
 <% flash.each do |key, value| %>
 	<div class='flash' id='<%= key %>'>
