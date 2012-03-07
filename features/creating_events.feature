@@ -9,6 +9,7 @@ Feature: Creating events
 		| email              | password | admin | name      |
 		| user@example.com   | password | true  | Billybob  |
 		And "user@example.com" can view the "Olympics" category
+		And "user@example.com" can create events in the "Olympics" category
 		And I am signed in as them
 		And I am on the homepage
 		When I follow "Olympics"

@@ -3,8 +3,9 @@ class EventsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :find_category
   before_filter :find_event, :only => [:show, :edit, :update, :destroy]
-  #before_filter :authorize_create!, :only => [:new, :create]
-  #before_filter :authorize_update!, :only => [:edit, :update]
+  before_filter :authorize_create!, :only => [:new, :create]
+  before_filter :authorize_update!, :only => [:edit, :update]
+  before_filter :authorize_delete!, :only => :destroy
   
   def new
     @event = @category.events.build
@@ -67,6 +68,13 @@ class EventsController < ApplicationController
     def authorize_update!
       if !current_user.admin? && cannot?(:"edit events", @category)
         flash[:alert] = "You cannot modify events on this category."
+        redirect_to @category
+      end
+    end
+    
+    def authorize_delete!
+      if !current_user.admin? && cannot?(:"delete events", @category)
+        flash[:alert] = "You cannot delete events from this category."
         redirect_to @category
       end
     end
