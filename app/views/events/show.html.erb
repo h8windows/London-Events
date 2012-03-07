@@ -3,5 +3,9 @@
 	<small>Author: <%= @event.user.name %></small>
 	<%= simple_format(@event.description) %>
 </div>
-<%= link_to "Edit Event", [:edit, @category, @event] %>
-<%= link_to "Delete Event", [@category, @event], :method => :delete, :confirm => "Are you sure you want to delete this event?" %>
+<%= authorized?("edit events", @category) do %>
+	<%= link_to "Edit Event", [:edit, @category, @event] %>
+<% end %>
+<%= authorized?("delete events", @category) do %>
+	<%= link_to "Delete Event", [@category, @event], :method => :delete, :confirm => "Are you sure you want to delete this event?" %>
+<% end %>
