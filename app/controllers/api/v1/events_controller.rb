@@ -29,7 +29,7 @@ class Api::V1::EventsController < Api::V1::BaseController
   
   
   def update
-      @event = Event.(params[:id])
+      @event = Event.find(params[:id])
 
       respond_to do |format|
         if @event.update_attributes(params[:event])
