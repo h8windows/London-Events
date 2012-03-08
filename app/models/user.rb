@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          
   has_many :permissions
   
-  #before_save :ensure_authentication_token
+  before_save :ensure_authentication_token
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name

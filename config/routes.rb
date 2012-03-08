@@ -1,4 +1,10 @@
 Londonevents::Application.routes.draw do
+  
+  namespace :api do
+    namespace :v1 do
+      resources :categories
+    end
+  end
 
   root :to => "categories#index"
   resources :categories do
