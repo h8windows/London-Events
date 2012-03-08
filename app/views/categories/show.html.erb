@@ -1,12 +1,6 @@
 <h2><%= @category.name %></h2>
 <% title("Category", @category.name) %>
-<%= authorized?("create events".to_sym, @category) do %>
-	<%= link_to "New Event", new_category_event_path(@category) %>
-<% end %>
-<%= admins_only do %>
-	<%= link_to "Edit Category", edit_category_path(@category) %>
-	<%= link_to "Delete Category", @category, :method => :delete, :confirm => "Are you sure you want to delete this category?" %>
-<% end %>
+
 <ul id='events'>
 	<% @category.events.each do |event| %>
 		<li>
@@ -14,3 +8,13 @@
 		</li>
 	<% end %>
 </ul>
+<nav>
+<%= authorized?("create events".to_sym, @category) do %>
+	<%= link_to "New Event", new_category_event_path(@category) %>&nbsp;&nbsp;
+<% end %>
+<%= admins_only do %>
+	<%= link_to "Edit Category", edit_category_path(@category) %>&nbsp;&nbsp;
+	<%= link_to "Delete Category", @category, :method => :delete, :confirm => "Are you sure you want to delete this category?" %>
+<% end %>
+</nav>
+<br />
