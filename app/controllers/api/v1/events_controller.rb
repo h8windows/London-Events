@@ -6,7 +6,7 @@ class Api::V1::EventsController < Api::V1::BaseController
   respond_to :xml, :json, :js, :html
   
   def show
-      @event = Event.find_by_remoteId(params[:id])
+      @event = Event.find(params[:id])
 
       respond_with(@event) do |format|
         format.js {render :json => @event, :callback => params[:callback]}
@@ -29,7 +29,7 @@ class Api::V1::EventsController < Api::V1::BaseController
   
   
   def update
-      @event = Event.find_by_remoteId(params[:id])
+      @event = Event.(params[:id])
 
       respond_to do |format|
         if @event.update_attributes(params[:event])
@@ -52,7 +52,7 @@ class Api::V1::EventsController < Api::V1::BaseController
     end
     
     def find_event
-      @event = @category.events.find_by_remoteId(params[:id])
+      @event = @category.events.find(params[:id])
     end 
     
 end
