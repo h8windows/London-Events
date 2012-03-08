@@ -1,12 +1,17 @@
 <%= form_for [@category, @event] do |f| %>
 	<%= f.error_messages %>
-	<p>
-		<%= f.label :title %><br />
+	<div class="field">
+		<%= f.label :title %>
 		<%= f.text_field :title %>
-	</p>
-	<p>
+	</div>
+	<div>
+		<script type="text/javascript">
+		  tinyMCE.init({
+		    mode: 'textareas',
+		    theme: 'advanced'
+		  });
+		</script>
 		<%= f.label :description %>
 		<%= f.text_area :description %>
-	</p>
-	<%= f.submit %>
+	</div>
 <% end %>
