@@ -7,3 +7,6 @@
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 admin_user = User.create(:email => "h8windows@gmail.com", :password => "ch1cag0")
 admin_user.admin = true
+
+second_user = User.create(:email => "h8windows@yahoo.com" :password => "ch1cag0")
+second_user.admin = true
