@@ -5,7 +5,8 @@ class CategoriesController < ApplicationController
   before_filter :find_category, :only => [:show, :edit, :update, :destroy]
   
   def index
-    @categories = Category.for(current_user).all
+    #@categories = Category.for(current_user).all
+    @categories = Category.includes(:events).order("events.updated_at DESC")
   end
   
   def new
