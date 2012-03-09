@@ -1,7 +1,9 @@
 <h2>Categories</h2>
 <ul>
-	<% @categories.each do |category| %>
-	<li><%= link_to category.name, category %></li>
+	<% @categories.each do |category| 
+		category.events.each do |event| %>
+		<li><%= link_to category.name, category %> Event: <%= event.title %></li>
+	<% end %>
 	<% end %>
 </ul>
 <%= admins_only do %>
