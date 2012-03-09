@@ -6,8 +6,7 @@ class Api::V1::CategoriesController < Api::V1::BaseController
   respond_to :xml, :json, :js, :html
   
   def index
-    #respond_with(Category.for(current_user))
-    @categories = Category.all
+    @categories = Category.includes(:events).order("events.updated_at DESC")
     respond_with(@categories) do |format|
       format.js {render :json => @categories, :include => [:events], :callback => params[:callback]}
       #format.js {render :json => @categories, :callback => params[:callback]}
